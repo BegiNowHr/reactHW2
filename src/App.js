@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      backgroundColor1: 'blue',
+      backgroundColor2: 'red'
+    };
+  }
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+  changeColor = () => {
+    this.setState((prevColor) => ({
+      backgroundColor1: prevColor.backgroundColor2,
+      backgroundColor2: prevColor.backgroundColor1
+    }));
+  };
+
+  render() {
+    return (
+      <div>
+        <button
+          className="square"
+          style={{ backgroundColor: this.state.backgroundColor1 }}
+          onClick={this.changeColor}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+        </button>
+        <button
+          className="square"
+          style={{ backgroundColor: this.state.backgroundColor2 }}
+          onClick={this.changeColor}
+        >
+        </button>
+      </div>
+    );
+  }
 }
 
 export default App;
